@@ -14,5 +14,7 @@ packages (dplyr, tidyverse, data.table, GENESIS)
 ## STEP 2: Construct PRS
 
 For the main analysis, we used hypertension “pan ancestry” GWAS from
-UKBB (<https://pan.ukbb.broadinstitute.org>), and systolic BP (SBP), and
-diastolic BP (DBP) from MVP(<PMID:30578418>).
+[UKBB](https://pan.ukbb.broadinstitute.org), and systolic BP
+([SBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and diastolic BP
+([DBP]((https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million
+Veteran Program)
