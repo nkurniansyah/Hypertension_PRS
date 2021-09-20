@@ -16,5 +16,5 @@ packages (dplyr, tidyverse, data.table, GENESIS)
 For the main analysis, we used hypertension “pan ancestry” GWAS from
 [UKBB](https://pan.ukbb.broadinstitute.org), and systolic BP
 ([SBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and diastolic BP
-([DBP]((https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million
+([DBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million
 Veteran Program)
