@@ -1,10 +1,18 @@
 ## Introduction
 
-This is the scripts to generate and run the analysis of Polygenic Risk
-Score in Hypertension. This script is based on the manuscript:
+This is the instruction to generate and run the analysis of Polygenic
+Risk Score in Hypertension. This instruction based on manuscript:
 
-## Installation and required packages
+## STEP 1: Installation and require packages
 
-We used PRSice 2.3.1.e (<https://www.prsice.info>) to generate PRS
-andthe analyses has been done using R. In order to run this script,
-please install these R pakages (dplyr, tidyverse, data.table, GENESIS)
+In this paper, We used PRSice 2.3.1.e (<https://www.prsice.info>) to
+generate PRS.
+
+we performed the analysis using R programming and required few R
+packages (dplyr, tidyverse, data.table, GENESIS)
+
+## STEP 2: Construct PRS
+
+For the main analysis, we used hypertension “pan ancestry” GWAS from
+UKBB (<https://pan.ukbb.broadinstitute.org>), and systolic BP (SBP), and
+diastolic BP (DBP) from MVP(<PMID:30578418>).
