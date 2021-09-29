@@ -31,7 +31,8 @@ We provide summary statistics to crete HTN PRS in this repistory(./Summary_Stati
 ```{bash eval=FALSE, echo=TRUE}
 
 
-Rscript ./PRSice.R --dir ./PRS_Output \
+Rscript ./PRSice.R \
+ --dir ./PRS_Output \
  --prsice ./PRSice_linux/PRSice_linux \
  --base ./Summary_Statistic/. \
  --target ./Genotype \

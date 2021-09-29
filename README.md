@@ -27,7 +27,8 @@ repistory(./Summary\_Statitcs/\*).
 
 
 
-    Rscript ./PRSice.R --dir ./PRS_Output \
+    Rscript ./PRSice.R \
+     --dir ./PRS_Output \
      --prsice ./PRSice_linux/PRSice_linux \
      --base ./Summary_Statistic/. \
      --target ./Genotype \
