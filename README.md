@@ -90,9 +90,35 @@ After run PRS for each summary statistics, then we combine PRS (PRSsum).
 Finally, we perormed association analysis using mix model.
 
     library(GENESIS)
+    library(GWASTools)
+
+    source("./Code/Utils.R")
 
 
     #phenotype
 
+    pheno<- fread(phenotype_file, data.table=F)
 
-    pas
+
+    # merge PRSsum with phenotype
+
+    pheno_df<-left_join(pheno,prssum, by="sample.id" )
+
+
+    covarites_prs<- c("BMI","age","sex","site","race",paste0("PC_",1:11),"PRSsum")
+
+    outcome<-"HTN"
+
+    ## Kinship matrix
+
+    covMatlist<-getobj(covMatlist)
+
+
+    assoc_df<- run_assoc_mixmodel(pheno=pheno,
+                                  outcome=outcome,
+                                  covars_prs=covarites_prs, 
+                                  covmat=covMatlist,
+                                  group.var=NULL)
+
+
+    # Perform AUC
