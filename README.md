@@ -25,10 +25,74 @@ more detail.
 We provide summary statistics to crete HTN PRS in this
 repistory(./Summary\_Statitcs/\*).
 
+
+
+    Rscript ./PRSice.R --dir ./PRS_Output \
+     --prsice ./PRSice_linux/PRSice_linux \
+     --base ./Summary_Statistic/. \
+     --target ./Genotype \
+     --thread 2 \
+     --chr Chromosome 
+     --bp Position 
+     --A1 Allele1 
+     --A2 Allele2 
+     --pvalue PValue \
+     --bar-levels 5e-8,1e-7 \
+     --stat BETA 
+     --all-score T \
+     --out ./out_prs \
+     --no-clump T
+     --print-snp T \
+     --ignore-fid T 
+     --no-regress T 
+     --fastscore T 
+     --model add 
+     --no-full T 
+     --chr-id c:L:a:B 
+
 ## STEP 3: Construct PRSsum
 
 After run PRS for each summary statistics, then we combine PRS (PRSsum).
 
+    library(data.table)
+    library(dplyr)
+    library(purrr)
+
+
+    prs_trait<- c("SBP", "DBP","HTN")
+    out<-list()
+    for(prs in prs_trait){
+      
+      
+      prs_output<-paste0("./", prs,".txt")
+      prs_df<-fread(prs_output, data.table=F)
+      prs_df<- prs_df %>% dplyr::select(-IID)
+      colnames(prs_df)<- c("sample.id",prs)
+      
+      #standardize prs
+
+      prs_df[, prs]<- (prs_df[,prs] - mean(prs_df[,prs]))/sd(prs_df[,prs])
+      out[[prs]]<- prs_df
+      
+      
+    }
+
+    combine_prs<- purrr::reduce(out, full_join , by="sample.id")
+
+
+
+    prssum<- data.frame(sample.id=prssum$sample.id, PRSsum=apply(prssum[,], 2, sum))
+
+    prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - mean(prssum[,"PRSsum"]))/sd(prssum[,"PRSsum"])
+
 ## STEP 3: Perform Association Analysis
 
 Finally, we perormed association analysis using mix model.
+
+    library(GENESIS)
+
+
+    #phenotype
+
+
+    pas
