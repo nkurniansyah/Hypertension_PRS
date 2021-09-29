@@ -1,29 +1,23 @@
-
-
-
-#' Title: Standardize PRS
+#' Title : Genearte AUC
 #'
-#' @param prs_score : vector of prs score
-#' @param mean_prs :mean of the prs
-#' @param sd_prs : sd of the prs
+#' @param pheno : data frame of the phenotype 
+#' @param outcome : as.numeric , outcome to test 
+#' @param covars_prs : covariates to adjust
+#' @param seed : random seed number
 #'
-#' @return std prs
+#' @return auc
 #' @export
 #'
 #' @examples
-standardize_prs<-function(prs_score,mean_prs, sd_prs){
+generate_auc<-function(pheno,outcome, covars_prs, seed=NULL ){
   
-  std_prs <- (prs_score-mean_prs)/sd_prs
-  return(std_prs)
-}
-
-
-
-
-
-generate_auc<-function(pheno,outcome, covars_prs ){
+  if(!is.null(seed)){
+    set.seed(888)
+    
+  }else{
+    set.seed(seed)
+  }
   
-  set.seed(888)
   
   sample <- sample(nrow(pheno),floor(nrow(pheno)*0.8))
   
