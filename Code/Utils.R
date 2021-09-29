@@ -3,13 +3,14 @@
 #' @param pheno : data frame of the phenotype 
 #' @param outcome : as.numeric , outcome to test 
 #' @param covars_prs : covariates to adjust
+#' @param n : boostrap n
 #' @param seed : random seed number
 #'
 #' @return auc
 #' @export
 #'
 #' @examples
-generate_auc<-function(pheno,outcome, covars_prs, seed=NULL ){
+generate_auc<-function(pheno,outcome, covars_prs, seed=NULL,n= 2000){
   
   if(!is.null(seed)){
     set.seed(888)
@@ -34,7 +35,7 @@ generate_auc<-function(pheno,outcome, covars_prs, seed=NULL ){
   test_dat<- cbind(test,pred_mod)
   
 
-  auc_prs= ci.auc(roc(test_dat[,outcome] ~ test_dat$pred), conf.level=0.95, method=c("bootstrap") ,boot.n = 2000, boot.stratified = TRUE, reuse.auc=TRUE,
+  auc_prs= ci.auc(roc(test_dat[,outcome] ~ test_dat$pred), conf.level=0.95, method=c("bootstrap") ,boot.n = n, boot.stratified = TRUE, reuse.auc=TRUE,
                  progress = getOption("pROCProgress")$name, parallel=FALSE)
   auc_prs_df<- c(auc_prs)
   names(auc_prs_df)<- c("auc_low","auc","auc_hi") 

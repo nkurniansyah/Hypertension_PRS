@@ -91,6 +91,8 @@ Finally, we perormed association analysis using mix model.
 
     library(GENESIS)
     library(GWASTools)
+    library(pROC)
+
 
     source("./Code/Utils.R")
 
@@ -122,3 +124,19 @@ Finally, we perormed association analysis using mix model.
 
 
     # Perform AUC
+
+    #only use unrelated people
+
+    unrels<- getobj(unrels_people)
+
+    pheno_unrels<- pheno[pheno_df$sample.id %in% unrels,]
+
+
+    auc<- generate_auc(pheno=pheno_unrels,
+                       outcome=outcome,
+                       covars_prs=covarites_prs, seed=NULL,
+                       n= 2000)
+
+
+
+    final_assoc<-c(assoc_df,auc)
