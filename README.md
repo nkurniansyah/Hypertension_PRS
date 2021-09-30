@@ -2,7 +2,8 @@
 
 This is the instruction to construct generate and run the association
 test for Polygenic Risk Score in Hypertension. This instruction is based
-on the manuscript:…
+on the manuscript A multi-ethnic polygenic risk score is associated with
+hypertension prevalence and progression throughout adulthood.
 
 ## STEP 1: Installation and require packages
 
@@ -82,7 +83,7 @@ After run PRS for each summary statistics, then we combine PRS (PRSsum).
 
 
 
-    prssum<- data.frame(sample.id=prssum$sample.id, PRSsum=apply(prssum[,], 2, sum))
+    prssum<- data.frame(sample.id=prssum$sample.id, PRSsum=apply(prssum[,], 1, sum))
 
     prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - mean(prssum[,"PRSsum"]))/sd(prssum[,"PRSsum"])
 
