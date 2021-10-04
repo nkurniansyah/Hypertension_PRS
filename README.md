@@ -31,18 +31,7 @@ We provide summary statistics to crete HTN PRS in this
 repistory(./Summary\_Statitcs/\*). The summary statitics created are
 cretaed based on clumping paramenter below:
 
-    pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB")
-    mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP")
-    mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP")
-
-    res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
-
-    kableExtra::kable(res, caption = "Clumping paramaters based on CV approach")
-
 <table>
-<caption>
-Clumping paramaters based on CV approach
-</caption>
 <thead>
 <tr>
 <th style="text-align:left;">
