@@ -119,7 +119,7 @@ MVP
      --A1 Allele1 
      --A2 Allele2 
      --pvalue PValue \
-     --bar-levels PValue \
+     --bar-levels Threshold \
      --stat BETA 
      --all-score T \
      --out ./out_prs \
