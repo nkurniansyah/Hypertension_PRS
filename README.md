@@ -1,17 +1,21 @@
 ## Introduction
 
-This is the instruction to construct generate and run the association
-test for Polygenic Risk Score in Hypertension. This instruction is based
-on the manuscript A multi-ethnic polygenic risk score is associated with
-hypertension prevalence and progression throughout adulthood.
+This is the instruction to construct, generate and performs the
+association test for Polygenic Risk Score in Hypertension. This
+instruction is based on the manuscript A multi-ethnic polygenic risk
+score is associated with hypertension prevalence and progression
+throughout adulthood.
 
-## STEP 1: Installation and require packages
+## STEP 1: Installation and require R packages
 
 In this paper, We used [PRSice
 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate PRS.
 
-We performed the analysis using R programming and required few R
-packages (dplyr, tidyverse, data.table, GENESIS)
+We performed the analysis using R/4.0.2 programming. We first need to
+install the required CRAN (dplyr, tidyverse, data.table, purrr, pROC)
+and BioConductor(GENESIS, GWASToools) packages
+
+    install.packages("dplyr")
 
 ## STEP 2: Construct PRS
 
@@ -24,7 +28,94 @@ Veteran Program) to construct PRS (See script below). Then we applied CV
 more detail.
 
 We provide summary statistics to crete HTN PRS in this
-repistory(./Summary\_Statitcs/\*).
+repistory(./Summary\_Statitcs/\*). The summary statitics created are
+cretaed based on clumping paramenter below:
+
+    pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB")
+    mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP")
+    mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP")
+
+    res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
+
+    kableExtra::kable(res, caption = "Clumping paramaters based on CV approach")
+
+<table>
+<caption>
+Clumping paramaters based on CV approach
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Threshold
+</th>
+<th style="text-align:left;">
+Distance
+</th>
+<th style="text-align:left;">
+R2
+</th>
+<th style="text-align:left;">
+Trait
+</th>
+<th style="text-align:left;">
+Study
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0.2
+</td>
+<td style="text-align:left;">
+250kb
+</td>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+HTN
+</td>
+<td style="text-align:left;">
+Pan-UKBB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+1000kb
+</td>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+DBP
+</td>
+<td style="text-align:left;">
+MVP
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+1000kb
+</td>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+DBP
+</td>
+<td style="text-align:left;">
+MVP
+</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -39,7 +130,7 @@ repistory(./Summary\_Statitcs/\*).
      --A1 Allele1 
      --A2 Allele2 
      --pvalue PValue \
-     --bar-levels 5e-8,1e-7 \
+     --bar-levels PValue \
      --stat BETA 
      --all-score T \
      --out ./out_prs \

@@ -11,21 +11,39 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-This is the instruction to construct generate and run the association test for Polygenic Risk Score in Hypertension. This instruction is based on the manuscript A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood.
+This is the instruction to construct, generate and performs the association test for Polygenic Risk Score in Hypertension. This instruction is based on the manuscript A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood.
 
-## STEP 1: Installation and require packages
 
+## STEP 1: Installation and require R packages
 
 In this paper, We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate PRS. 
 
-We performed the analysis using R programming and required few R packages (dplyr, tidyverse, data.table, GENESIS)
+We performed the analysis using R/4.0.2 programming. We first need to install the required CRAN (dplyr, tidyverse, data.table, purrr, pROC) and BioConductor(GENESIS, GWASToools) packages
+
+```{r eval=FALSE, echo=TRUE}
+
+install.packages("dplyr")
+
+```
 
 
 ## STEP 2: Construct PRS
 
 We used hypertension “pan ancestry” GWAS from [UKBB](https://pan.ukbb.broadinstitute.org), and systolic BP ([SBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and diastolic BP ([DBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million Veteran Program) to construct PRS (See script below). Then we applied CV (Coefecient Variation) to select best perfomance PRS, see manuscript for more detail. 
 
-We provide summary statistics to crete HTN PRS in this repistory(./Summary_Statitcs/*).
+We provide summary statistics to crete HTN PRS in this repistory(./Summary_Statitcs/*). The summary statitics created are cretaed based on clumping paramenter below:
+
+```{r}
+pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB")
+mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP")
+mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP")
+
+res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
+
+kableExtra::kable(res, caption = "Clumping paramaters based on CV approach")
+
+```
+
 
 
 ```{bash eval=FALSE, echo=TRUE}
@@ -42,7 +60,7 @@ Rscript ./PRSice.R \
  --A1 Allele1 
  --A2 Allele2 
  --pvalue PValue \
- --bar-levels 5e-8,1e-7 \
+ --bar-levels PValue \
  --stat BETA 
  --all-score T \
  --out ./out_prs \
