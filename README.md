@@ -49,7 +49,7 @@ Trait
 Study
 </th>
 <th style="text-align:right;">
-Topmed\_mean
+Topmed_mean
 </th>
 <th style="text-align:right;">
 Topmed\_sd
