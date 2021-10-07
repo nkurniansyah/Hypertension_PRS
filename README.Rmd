@@ -34,13 +34,13 @@ We used hypertension “pan ancestry” GWAS from [UKBB](https://pan.ukbb.broadi
 We provide summary statistics to crete HTN PRS in this repistory(./Summary_Statitcs/*). The summary statitics created are cretaed based on clumping paramenter below:
 
 ```{r echo=FALSE}
-pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB", Topmed_mean=4.46e-06, Topmed_sd=4.07e-06)
-mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP",Topmed_mean=-4.95e-04, Topmed_sd=2.63e-04)
-mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP",Topmed_mean=-4.63e-03, Topmed_sd=1.11e-03)
+pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB", "Topmed mean"=4.46e-06, Topmed_sd=4.07e-06)
+mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP","Topmed mean"=-4.95e-04, Topmed_sd=2.63e-04)
+mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP","Topmed mean"=-4.63e-03, Topmed_sd=1.11e-03)
 
 res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
-res
-#kableExtra::kable(res)
+
+kableExtra::kable(res, )
 
 ```
 
