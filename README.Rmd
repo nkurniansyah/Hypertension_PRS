@@ -39,8 +39,8 @@ mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",S
 mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP",Topmed_mean=-4.63e-03, Topmed_sd=1.11e-03)
 
 res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
-
-kableExtra::kable(res)
+res
+#kableExtra::kable(res)
 
 ```
 

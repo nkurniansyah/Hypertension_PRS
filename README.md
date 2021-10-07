@@ -30,104 +30,10 @@ We provide summary statistics to crete HTN PRS in this
 repistory(./Summary\_Statitcs/\*). The summary statitics created are
 cretaed based on clumping paramenter below:
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Threshold
-</th>
-<th style="text-align:left;">
-Distance
-</th>
-<th style="text-align:left;">
-R2
-</th>
-<th style="text-align:left;">
-Trait
-</th>
-<th style="text-align:left;">
-Study
-</th>
-<th style="text-align:right;">
-Topmed_mean
-</th>
-<th style="text-align:right;">
-Topmed\_sd
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-0.2
-</td>
-<td style="text-align:left;">
-250kb
-</td>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-HTN
-</td>
-<td style="text-align:left;">
-Pan-UKBB
-</td>
-<td style="text-align:right;">
-4.50e-06
-</td>
-<td style="text-align:right;">
-4.10e-06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-1000kb
-</td>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:left;">
-MVP
-</td>
-<td style="text-align:right;">
--4.95e-04
-</td>
-<td style="text-align:right;">
-2.63e-04
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-1000kb
-</td>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:left;">
-MVP
-</td>
-<td style="text-align:right;">
--4.95e-04
-</td>
-<td style="text-align:right;">
-2.63e-04
-</td>
-</tr>
-</tbody>
-</table>
+    ##   Threshold Distance  R2 Trait    Study Topmed_mean Topmed_sd
+    ## 1       0.2    250kb 0.1   HTN Pan-UKBB    4.46e-06  4.07e-06
+    ## 2       0.1   1000kb 0.1   DBP      MVP   -4.95e-04  2.63e-04
+    ## 3       0.1   1000kb 0.1   DBP      MVP   -4.95e-04  2.63e-04
 
 
 
