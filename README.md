@@ -1,10 +1,9 @@
 ## Introduction
 
-This is the instruction to construct, generate and performs the
-association test for Polygenic Risk Score in Hypertension. This
-instruction is based on the manuscript A multi-ethnic polygenic risk
-score is associated with hypertension prevalence and progression
-throughout adulthood.
+This is the instruction to construct and performs the association test
+for Polygenic Risk Score in Hypertension. This instruction is based on
+the manuscript A multi-ethnic polygenic risk score is associated with
+hypertension prevalence and progression throughout adulthood.
 
 ## STEP 1: Installation and require R packages
 
@@ -49,6 +48,12 @@ Trait
 <th style="text-align:left;">
 Study
 </th>
+<th style="text-align:right;">
+Topmed\_mean
+</th>
+<th style="text-align:right;">
+Topmed\_sd
+</th>
 </tr>
 </thead>
 <tbody>
@@ -68,22 +73,11 @@ HTN
 <td style="text-align:left;">
 Pan-UKBB
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-0.1
+<td style="text-align:right;">
+4.50e-06
 </td>
-<td style="text-align:left;">
-1000kb
-</td>
-<td style="text-align:left;">
-0.1
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:left;">
-MVP
+<td style="text-align:right;">
+4.10e-06
 </td>
 </tr>
 <tr>
@@ -101,6 +95,35 @@ DBP
 </td>
 <td style="text-align:left;">
 MVP
+</td>
+<td style="text-align:right;">
+-4.95e-04
+</td>
+<td style="text-align:right;">
+2.63e-04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+1000kb
+</td>
+<td style="text-align:left;">
+0.1
+</td>
+<td style="text-align:left;">
+DBP
+</td>
+<td style="text-align:left;">
+MVP
+</td>
+<td style="text-align:right;">
+-4.95e-04
+</td>
+<td style="text-align:right;">
+2.63e-04
 </td>
 </tr>
 </tbody>
@@ -130,7 +153,7 @@ MVP
      --fastscore T 
      --model add 
      --no-full T 
-     --chr-id c:L:a:B 
+     --chr-id c:l:a:b
 
 ## STEP 3: Construct PRSsum
 
