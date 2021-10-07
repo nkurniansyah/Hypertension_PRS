@@ -40,7 +40,7 @@ mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",
 
 res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
 
-kableExtra::kable(res, )
+kableExtra::kable(res)
 
 ```
 
@@ -83,6 +83,16 @@ Rscript ./PRSice.R \
 
 After run PRS for each summary statistics, then we combine PRS (PRSsum).
 
+
+```{r}
+
+
+Topmed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
+
+kableExtra::kable(Topmed_stage2, caption = "Mean and SD to stndardize PRSsum")
+```
+
+
 ```{r eval=FALSE, echo=TRUE}
 library(data.table)
 library(dplyr)
@@ -99,7 +109,7 @@ for(prs in prs_trait){
   prs_df<- prs_df %>% dplyr::select(-IID)
   colnames(prs_df)<- c("sample.id",prs)
   
-  #standardize prs
+  #standardize prs, Use the mean and sd PRS from TOPMed 
 
   prs_df[, prs]<- (prs_df[,prs] - mean(prs_df[,prs]))/sd(prs_df[,prs])
   out[[prs]]<- prs_df

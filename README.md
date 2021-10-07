@@ -159,6 +159,36 @@ MVP
 
 After run PRS for each summary statistics, then we combine PRS (PRSsum).
 
+    Topmed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
+
+    kableExtra::kable(Topmed_stage2, caption = "Mean and SD to stndardize PRSsum")
+
+<table>
+<caption>
+Mean and SD to stndardize PRSsum
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+TOPMed.mean
+</th>
+<th style="text-align:left;">
+TOPMed.sd
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+-5.86e-16
+</td>
+<td style="text-align:left;">
+2.31
+</td>
+</tr>
+</tbody>
+</table>
+
     library(data.table)
     library(dplyr)
     library(purrr)
@@ -174,7 +204,7 @@ After run PRS for each summary statistics, then we combine PRS (PRSsum).
       prs_df<- prs_df %>% dplyr::select(-IID)
       colnames(prs_df)<- c("sample.id",prs)
       
-      #standardize prs
+      #standardize prs, Use the mean and sd PRS from TOPMed 
 
       prs_df[, prs]<- (prs_df[,prs] - mean(prs_df[,prs]))/sd(prs_df[,prs])
       out[[prs]]<- prs_df
