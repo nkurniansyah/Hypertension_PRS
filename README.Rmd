@@ -41,15 +41,24 @@ Specific GWAS used: hypertension “pan ancestry” GWAS from [UKBB](https://pan
 
 The summary statistics provided in this repository were selected from those in the complete GWAS based on clumping parameter below, where we used the multi-ethnic TOPMed dataset used in the paper as an LD reference panel. To select the specific tuning parameter (LD parameters, p-value threshold) for each trait-specific PRS, we applied an approach where we optimized the coefficient of variation (CV) computed over the estimated effect sizes of the candidate PRS across 5 independent subset of the training dataset. See manuscript for more detail. 
 
+The table below provides, for each trait-specific GWAS used, the following information: 
+1. GWAS_pop: GWAS population (which cohort/study the GWAS summary statistics are from?)
+2. Trait (HTN, SBP, DBP)
+Threshold: p-value threshold for selecting SNPs into the PRS 
+3. Distance: distance in kilo base-pairs used for clumping (SNPs were removed from consideration based on LD with other SNPs within a window of this distance)
+4. R2: maximum LD for inclusion of SNPs within the distance-based window of another SNP that was already selected into the PRS.
+5. TOPMed_mean: the mean of the PRS after it was constructed in the multi-ethnic TOPMed population. That is, each of the TOPMed participants had a PRS value. This is the mean of these values. 
+6. TOPMed_sd: the standard deviation (SD) of the PRS after it was constructed in the multi-ethnic TOPMed population. That is, each of the TOPMed participants had a PRS value. This is the SD of these values. 
+
 
 ```{r echo=FALSE}
-pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB", "Topmed mean"=4.46e-06, "Topmed sd"=4.07e-06)
-mvp_DBP<- data.frame(Threshold="0.1", Distance="1000kb", R2="0.1", Trait="DBP",Study="MVP","Topmed mean"=-4.95e-04, "Topmed sd"=2.63e-04)
-mvp_SBP<- data.frame(Threshold="0.01", Distance="1000kb", R2="0.1", Trait="SBP",Study="MVP","Topmed mean"=-4.63e-03, "Topmed sd"=1.11e-03)
+ukb_htn <- data.frame(GWAS_pop ="Pan-UKBB", Trait="HTN", Threshold="0.2", Distance="250kb", R2="0.1", "TOPMed_mean"=4.46e-06, "TOPMed_sd"=4.07e-06)
+mvp_DBP <- data.frame(GWAS_pop ="MVP", Trait="DBP", Threshold="0.1", Distance="1000kb", R2="0.1", "TOPMed_mean"=-4.95e-04, "TOPMed_sd"=2.63e-04)
+mvp_SBP <- data.frame(GWAS_pop ="MVP", Trait="SBP", Threshold="0.01", Distance="1000kb", R2="0.1", "TOPMed_mean"=-4.63e-03, "TOPMed_sd"=1.11e-03)
 
-res<-rbind(pan_ancestry,mvp_DBP,mvp_DBP)
+PRS_info <- rbind(ukb_htn, mvp_DBP, mvp_DBP)
 
-kableExtra::kable(res)
+kableExtra::kable(PRS_info)
 
 ```
 
@@ -96,9 +105,9 @@ After run PRS for each summary statistics, then we combine PRS (PRSsum).
 ```{r}
 
 
-Topmed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
+TOPMed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
 
-kableExtra::kable(Topmed_stage2, caption = "Mean and SD to stndardize PRSsum")
+kableExtra::kable(TOPMed_stage2, caption = "Mean and SD to stndardize PRSsum")
 ```
 
 
