@@ -21,9 +21,11 @@ PRS based on the provided summary statistics in folder
 
 Other software and packages that we used, but may not be necessary for
 others to construct the PRS, are as follows: 1. We performed the
-analysis using R version 4.0.2. W 2. We used the following packages from
-CRAN: dplyr, tidyverse, data.table, purrr, pROC. 3. We used the
-following packages from BioConductor: GENESIS, GWASTools.
+analysis using R version 4.0.2.  
+2. We used the following packages from CRAN: dplyr, tidyverse,
+data.table, purrr, pROC.  
+3. We used the following packages from BioConductor: GENESIS,
+GWASTools.  
 
     install.packages("dplyr")
 
