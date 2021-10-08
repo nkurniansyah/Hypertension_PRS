@@ -1,77 +1,111 @@
 ## Introduction
 
-This is the instruction to construct and performs the association test
-for Polygenic Risk Score in Hypertension. This instruction is based on
-the manuscript A multi-ethnic polygenic risk score is associated with
-hypertension prevalence and progression throughout adulthood.
+This repository provides information regarding the construction of a
+polygenic risk score (PRS) for hypertension (HTN) that we developed
+(HTN-PRS) and will be posted as a preprint soon (link to be added).
 
-## STEP 1: Installation and require R packages
+First, it provides instructions for constructing the HTN-PRS based on
+summary statistics from GWAS. We provide the relevant summary statistics
+(see folder “Summary\_Statistics\_for\_PRS\_construction”), as well as
+code for using them to construct the PRS.
 
-In this paper, We used [PRSice
-2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate PRS.
+Second, this repository also provides code the we used for the analyses
+in the manuscript (see folder “Code”).
 
-We performed the analysis using R/4.0.2 programming. We first need to
-install the required CRAN (dplyr, tidyverse, data.table, purrr, pROC)
-and BioConductor(GENESIS, GWASToools) packages
+## Required packages
+
+We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to
+generate PRS. We provide example code that also uses PRSice to construct
+PRS based on the provided summary statistics in folder
+“Summary\_Statistics\_for\_PRS\_construction”.
+
+Other software and packages that we used, but may not be necessary for
+others to construct the PRS, are as follows: 1. We performed the
+analysis using R version 4.0.2. W 2. We used the following packages from
+CRAN: dplyr, tidyverse, data.table, purrr, pROC. 3. We used the
+following packages from BioConductor: GENESIS, GWASTools.
 
     install.packages("dplyr")
 
-## STEP 2: Construct PRS
+## PRS construction
 
-We used hypertension “pan ancestry” GWAS from
-[UKBB](https://pan.ukbb.broadinstitute.org), and systolic BP
-([SBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and diastolic BP
-([DBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million
-Veteran Program) to construct PRS (See script below). Then we applied CV
-(Coefecient Variation) to select best perfomance PRS, see manuscript for
-more detail.
+Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood
+pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics
+to create the each of the trait-PRS are provided here in a
+subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*).
 
-We provide summary statistics to crete HTN PRS in this
-repistory(./Summary\_Statitcs/\*). The summary statitics created are
-cretaed based on clumping paramenter below:
+Specific GWAS used: hypertension “pan ancestry” GWAS from
+[UKBB](https://pan.ukbb.broadinstitute.org), ([SBP GWAS from
+MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and ([DBP GWAS from
+MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) with MVP standing for
+Million Veteran Program.
+
+The summary statistics provided in this repository were selected from
+those in the complete GWAS based on clumping parameter below, where we
+used the multi-ethnic TOPMed dataset used in the paper as an LD
+reference panel. To select the specific tuning parameter (LD parameters,
+p-value threshold) for each trait-specific PRS, we applied an approach
+where we optimized the coefficient of variation (CV) computed over the
+estimated effect sizes of the candidate PRS across 5 independent subset
+of the training dataset. See manuscript for more detail.
+
+The table below provides, for each trait-specific GWAS used, the
+following information: 1. GWAS\_pop: GWAS population (which cohort/study
+the GWAS summary statistics are from?) 2. Trait (HTN, SBP, DBP)
+Threshold: p-value threshold for selecting SNPs into the PRS 3.
+Distance: distance in kilo base-pairs used for clumping (SNPs were
+removed from consideration based on LD with other SNPs within a window
+of this distance) 4. R2: maximum LD for inclusion of SNPs within the
+distance-based window of another SNP that was already selected into the
+PRS. 5. TOPMed\_mean: the mean of the PRS after it was constructed in
+the multi-ethnic TOPMed population. That is, each of the TOPMed
+participants had a PRS value. This is the mean of these values. 6.
+TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+constructed in the multi-ethnic TOPMed population. That is, each of the
+TOPMed participants had a PRS value. This is the SD of these values.
 
 <table>
 <thead>
 <tr>
 <th style="text-align:left;">
+GWAS\_pop
+</th>
+<th style="text-align:left;">
+Trait
+</th>
+<th style="text-align:right;">
 Threshold
 </th>
 <th style="text-align:left;">
 Distance
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 R2
 </th>
-<th style="text-align:left;">
-Trait
-</th>
-<th style="text-align:left;">
-Study
+<th style="text-align:right;">
+TOPMed\_mean
 </th>
 <th style="text-align:right;">
-Topmed.mean
-</th>
-<th style="text-align:right;">
-Topmed.sd
+TOPMed\_sd
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
+Pan-UKBB
+</td>
+<td style="text-align:left;">
+HTN
+</td>
+<td style="text-align:right;">
 0.2
 </td>
 <td style="text-align:left;">
 250kb
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.1
-</td>
-<td style="text-align:left;">
-HTN
-</td>
-<td style="text-align:left;">
-Pan-UKBB
 </td>
 <td style="text-align:right;">
 4.50e-06
@@ -82,19 +116,19 @@ Pan-UKBB
 </tr>
 <tr>
 <td style="text-align:left;">
+MVP
+</td>
+<td style="text-align:left;">
+DBP
+</td>
+<td style="text-align:right;">
 0.1
 </td>
 <td style="text-align:left;">
 1000kb
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.1
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:left;">
-MVP
 </td>
 <td style="text-align:right;">
 -4.95e-04
@@ -105,19 +139,19 @@ MVP
 </tr>
 <tr>
 <td style="text-align:left;">
+MVP
+</td>
+<td style="text-align:left;">
+DBP
+</td>
+<td style="text-align:right;">
 0.1
 </td>
 <td style="text-align:left;">
 1000kb
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 0.1
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:left;">
-MVP
 </td>
 <td style="text-align:right;">
 -4.95e-04
@@ -129,12 +163,20 @@ MVP
 </tbody>
 </table>
 
+## PRSice command for PRS construction
+
+This command is to construct PRS using the summary statistics that we
+provide. No clumping is needed and no selection of SNPs. The summary
+statistics are already based on the specific set of SNPs selected after
+clumping and setting a p-value threshold. Note that genetic data files
+need to be specified in the –target argument.
+
 
 
     Rscript ./PRSice.R \
      --dir ./PRS_Output \
      --prsice ./PRSice_linux/PRSice_linux \
-     --base ./Summary_Statistic/. \
+     --base ./Summary_Statistics_for_PRS_construction/. \
      --target ./Genotype \
      --thread 2 \
      --chr Chromosome 
@@ -155,34 +197,43 @@ MVP
      --no-full T 
      --chr-id c:l:a:b
 
-## STEP 3: Construct PRSsum
+## Constructing PRSsum based on trait-specific PRS
 
-After run PRS for each summary statistics, then we combine PRS (PRSsum).
+After constructing trait-specific PRS, the HTN-PRS is obtained via the
+PRSsum approach: as an unweighted of the scaled trait-specific PRS. For
+scaling, we use the TOPMed mean and SD values of each trait-specific
+PRS, and we also provide here the TOPMed mean and SD of the HTN-PRS for
+final scaling. Using the same scaling throughout guarantees that effect
+size estimates are similarly interpreted across all datasets and
+individuals who use this PRS.
 
-    Topmed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
+    # mean and SD of the HTN-PRS in the multi-ethnic TOPMed participants in the analysis:
 
-    kableExtra::kable(Topmed_stage2, caption = "Mean and SD to stndardize PRSsum")
+    TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -5.86e-16, 
+                                         TOPMed_sd= 2.31 )
+
+    kableExtra::kable(TOPMed_HTN_PRS_mean_sd, caption = "Mean and SD of PRSsum in TOPMed")
 
 <table>
 <caption>
-Mean and SD to stndardize PRSsum
+Mean and SD of PRSsum in TOPMed
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;">
-TOPMed.mean
+<th style="text-align:right;">
+TOPMed\_mean
 </th>
-<th style="text-align:left;">
-TOPMed.sd
+<th style="text-align:right;">
+TOPMed\_sd
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
--5.86e-16
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 2.31
 </td>
 </tr>
@@ -194,35 +245,40 @@ TOPMed.sd
     library(purrr)
 
 
-    prs_trait<- c("SBP", "DBP","HTN")
+    prs_traits <- c("SBP", "DBP","HTN")
     out<-list()
-    for(prs in prs_trait){
+    for(trait in prs_traits){
       
       
-      prs_output<-paste0("./", prs,".txt")
-      prs_df<-fread(prs_output, data.table=F)
-      prs_df<- prs_df %>% dplyr::select(-IID)
-      colnames(prs_df)<- c("sample.id",prs)
+      prs_output <-paste0("./", prs,".txt")
+      prs_df <-fread(prs_output, data.table=F)
+      prs_df <- prs_df %>% dplyr::select(-IID)
+      colnames(prs_df)<- c("sample.id", trait)
       
-      #standardize prs, Use the mean and sd PRS from TOPMed 
-
-      prs_df[, prs]<- (prs_df[,prs] - mean(prs_df[,prs]))/sd(prs_df[,prs])
-      out[[prs]]<- prs_df
+      #standardize trait-prs using the mean and sd from TOPMed 
+      cur_TOPMed_mean <- PRS_info$TOPMed_mean[which(PRS_info$Trait == trait)]
+      cur_TOPMed_sd <- PRS_info$TOPMed_sd[which(PRS_info$Trait == trait)]
+      
+      prs_df[, trait]<- (prs_df[, trait] - cur_TOPMed_mean)/cur_TOPMed_sd
+      out[[trait]]<- prs_df
       
       
     }
 
-    combine_prs<- purrr::reduce(out, full_join , by="sample.id")
+    combine_prs <- purrr::reduce(out, full_join , by="sample.id")
 
 
 
-    prssum<- data.frame(sample.id=prssum$sample.id, PRSsum=apply(prssum[,], 1, sum))
+    prssum<- data.frame(sample.id=prssum$sample.id, 
+                        PRSsum=apply(prssum[,], 1, sum))
 
-    prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - mean(prssum[,"PRSsum"]))/sd(prssum[,"PRSsum"])
+    prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - TOPMed_HTN_PRS_mean_sd$TOPMed_mean))/TOPMed_HTN_PRS_mean_sd$TOPMed_sd
 
-## STEP 3: Perform Association Analysis
+## Example code for association analsis
 
-Finally, we perormed association analysis using mix model.
+We performed association analysis using mixed models implemented in the
+GENESIS R package. Below is an example code. It uses function that we
+provide in the folder “Code”.
 
     library(GENESIS)
     library(GWASTools)
