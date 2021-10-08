@@ -52,9 +52,11 @@ Threshold: p-value threshold for selecting SNPs into the PRS
 
 
 ```{r echo=FALSE}
-ukb_htn <- data.frame(GWAS_pop ="Pan-UKBB", Trait="HTN", Threshold="0.2", Distance="250kb", R2="0.1", "TOPMed_mean"=4.46e-06, "TOPMed_sd"=4.07e-06)
-mvp_DBP <- data.frame(GWAS_pop ="MVP", Trait="DBP", Threshold="0.1", Distance="1000kb", R2="0.1", "TOPMed_mean"=-4.95e-04, "TOPMed_sd"=2.63e-04)
-mvp_SBP <- data.frame(GWAS_pop ="MVP", Trait="SBP", Threshold="0.01", Distance="1000kb", R2="0.1", "TOPMed_mean"=-4.63e-03, "TOPMed_sd"=1.11e-03)
+ukb_htn <- data.frame(GWAS_pop ="Pan-UKBB", Trait="HTN", Threshold=0.2, Distance="250kb", R2=0.1, TOPMed_mean=4.46e-06, TOPMed_sd=4.07e-06)
+
+mvp_DBP <- data.frame(GWAS_pop ="MVP", Trait="DBP", Threshold=0.1, Distance="1000kb", R2=0.1, TOPMed_mean=-4.95e-04, TOPMed_sd=2.63e-04)
+
+mvp_SBP <- data.frame(GWAS_pop ="MVP", Trait="SBP", Threshold=0.01, Distance="1000kb", R2=0.1, TOPMed_mean=-4.63e-03, TOPMed_sd=1.11e-03)
 
 PRS_info <- rbind(ukb_htn, mvp_DBP, mvp_DBP)
 
@@ -62,8 +64,8 @@ kableExtra::kable(PRS_info)
 
 ```
 
-
-
+## PRSice command for PRS construction
+This command is to construct PRS using the summary statistics that we provide. No clumping is needed and no selection of SNPs. The summary statistics are already based on the specific set of SNPs selected after clumping and setting a p-value threshold. Note that genetic data files need to be specified in the --target argument.
 
 ```{bash eval=FALSE, echo=TRUE}
 
@@ -71,7 +73,7 @@ kableExtra::kable(PRS_info)
 Rscript ./PRSice.R \
  --dir ./PRS_Output \
  --prsice ./PRSice_linux/PRSice_linux \
- --base ./Summary_Statistic/. \
+ --base ./Summary_Statistics_for_PRS_construction/. \
  --target ./Genotype \
  --thread 2 \
  --chr Chromosome 
@@ -97,17 +99,18 @@ Rscript ./PRSice.R \
 
 
 
-## STEP 3: Construct PRSsum
+## Constructing PRSsum based on trait-specific PRS
 
-After run PRS for each summary statistics, then we combine PRS (PRSsum).
+After constructing trait-specific PRS, the HTN-PRS is obtained via the PRSsum approach: as an unweighted of the scaled trait-specific PRS. For scaling, we use the TOPMed mean and SD values of each trait-specific PRS, and we also provide here the TOPMed mean and SD of the HTN-PRS for final scaling. Using the same scaling throughout guarantees that effect size estimates are similarly interpreted across all datasets and individuals who use this PRS. 
 
 
 ```{r}
+# mean and SD of the HTN-PRS in the multi-ethnic TOPMed participants in the analysis:
 
+TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -5.86e-16, 
+                                     TOPMed_sd= 2.31 )
 
-TOPMed_stage2<- data.frame("TOPMed mean"="-5.86e-16", "TOPMed sd"= "2.31" )
-
-kableExtra::kable(TOPMed_stage2, caption = "Mean and SD to stndardize PRSsum")
+kableExtra::kable(TOPMed_HTN_PRS_mean_sd, caption = "Mean and SD of PRSsum in TOPMed")
 ```
 
 
@@ -117,39 +120,42 @@ library(dplyr)
 library(purrr)
 
 
-prs_trait<- c("SBP", "DBP","HTN")
+prs_traits <- c("SBP", "DBP","HTN")
 out<-list()
-for(prs in prs_trait){
+for(trait in prs_traits){
   
   
-  prs_output<-paste0("./", prs,".txt")
-  prs_df<-fread(prs_output, data.table=F)
-  prs_df<- prs_df %>% dplyr::select(-IID)
-  colnames(prs_df)<- c("sample.id",prs)
+  prs_output <-paste0("./", prs,".txt")
+  prs_df <-fread(prs_output, data.table=F)
+  prs_df <- prs_df %>% dplyr::select(-IID)
+  colnames(prs_df)<- c("sample.id", trait)
   
-  #standardize prs, Use the mean and sd PRS from TOPMed 
-
-  prs_df[, prs]<- (prs_df[,prs] - mean(prs_df[,prs]))/sd(prs_df[,prs])
-  out[[prs]]<- prs_df
+  #standardize trait-prs using the mean and sd from TOPMed 
+  cur_TOPMed_mean <- PRS_info$TOPMed_mean[which(PRS_info$Trait == trait)]
+  cur_TOPMed_sd <- PRS_info$TOPMed_sd[which(PRS_info$Trait == trait)]
+  
+  prs_df[, trait]<- (prs_df[, trait] - cur_TOPMed_mean)/cur_TOPMed_sd
+  out[[trait]]<- prs_df
   
   
 }
 
-combine_prs<- purrr::reduce(out, full_join , by="sample.id")
+combine_prs <- purrr::reduce(out, full_join , by="sample.id")
 
 
 
-prssum<- data.frame(sample.id=prssum$sample.id, PRSsum=apply(prssum[,], 1, sum))
+prssum<- data.frame(sample.id=prssum$sample.id, 
+                    PRSsum=apply(prssum[,], 1, sum))
 
-prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - mean(prssum[,"PRSsum"]))/sd(prssum[,"PRSsum"])
+prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - TOPMed_HTN_PRS_mean_sd$TOPMed_mean))/TOPMed_HTN_PRS_mean_sd$TOPMed_sd
 
 
 
 ```
 
-## STEP 3: Perform Association Analysis
+## Example code for association analsis
 
-Finally, we perormed association analysis using mix model.
+We performed association analysis using mixed models implemented in the GENESIS R package. Below is an example code. It uses function that we provide in the folder "Code".
 
 ```{r eval=FALSE, echo=TRUE}
 
