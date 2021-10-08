@@ -52,21 +52,26 @@ estimated effect sizes of the candidate PRS across 5 independent subset
 of the training dataset. See manuscript for more detail.
 
 The table below provides, for each trait-specific GWAS used, the
-following information: 1. GWAS\_pop: GWAS population (which cohort/study
-the GWAS summary statistics are from?)  
-2. Trait (HTN, SBP, DBP)  
-3. Threshold: p-value threshold for selecting SNPs into the PRS  
-4. Distance: distance in kilo base-pairs used for clumping (SNPs were
-removed from consideration based on LD with other SNPs within a window
-of this distance)  
-5. R2: maximum LD for inclusion of SNPs within the distance-based window
-of another SNP that was already selected into the PRS.  
-6. TOPMed\_mean: the mean of the PRS after it was constructed in the
-multi-ethnic TOPMed population. That is, each of the TOPMed participants
-had a PRS value. This is the mean of these values.  
-7. TOPMed\_sd: the standard deviation (SD) of the PRS after it was
-constructed in the multi-ethnic TOPMed population. That is, each of the
-TOPMed participants had a PRS value. This is the SD of these values.
+following information:  
+
+1.  GWAS\_pop: GWAS population (which cohort/study the GWAS summary
+    statistics are from?)  
+2.  Trait (HTN, SBP, DBP)  
+3.  Threshold: p-value threshold for selecting SNPs into the PRS  
+4.  Distance: distance in kilo base-pairs used for clumping (SNPs were
+    removed from consideration based on LD with other SNPs within a
+    window of this distance)  
+5.  R2: maximum LD for inclusion of SNPs within the distance-based
+    window of another SNP that was already selected into the PRS.  
+6.  TOPMed\_mean: the mean of the PRS after it was constructed in the
+    multi-ethnic TOPMed population. That is, each of the TOPMed
+    participants had a PRS value. This is the mean of these values.  
+7.  TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+    constructed in the multi-ethnic TOPMed population. That is, each of
+    the TOPMed participants had a PRS value. This is the SD of these
+    values.
+
+<!-- -->
 
     ##   GWAS_pop Trait Threshold Distance  R2 TOPMed_mean TOPMed_sd
     ## 1 Pan-UKBB   HTN       0.2    250kb 0.1    4.46e-06  4.07e-06
