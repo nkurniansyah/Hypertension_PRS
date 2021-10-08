@@ -60,7 +60,9 @@ mvp_SBP <- data.frame(GWAS_pop ="MVP", Trait="SBP", Threshold=0.01, Distance="10
 
 PRS_info <- rbind(ukb_htn, mvp_DBP, mvp_DBP)
 
-kableExtra::kable(PRS_info)
+#kableExtra::kable(PRS_info)
+
+PRS_info
 
 ```
 
@@ -104,13 +106,13 @@ Rscript ./PRSice.R \
 After constructing trait-specific PRS, the HTN-PRS is obtained via the PRSsum approach: as an unweighted of the scaled trait-specific PRS. For scaling, we use the TOPMed mean and SD values of each trait-specific PRS, and we also provide here the TOPMed mean and SD of the HTN-PRS for final scaling. Using the same scaling throughout guarantees that effect size estimates are similarly interpreted across all datasets and individuals who use this PRS. 
 
 
-```{r}
+```{r echo=FALSE}
 # mean and SD of the HTN-PRS in the multi-ethnic TOPMed participants in the analysis:
 
 TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -5.86e-16, 
                                      TOPMed_sd= 2.31 )
 
-kableExtra::kable(TOPMed_HTN_PRS_mean_sd, caption = "Mean and SD of PRSsum in TOPMed")
+TOPMed_HTN_PRS_mean_sd
 ```
 
 
@@ -164,7 +166,7 @@ library(GWASTools)
 library(pROC)
 
 
-source("./Code/Utils.R")
+source("./Code/*")
 
 
 #phenotype

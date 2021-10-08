@@ -64,104 +64,10 @@ TOPMed\_sd: the standard deviation (SD) of the PRS after it was
 constructed in the multi-ethnic TOPMed population. That is, each of the
 TOPMed participants had a PRS value. This is the SD of these values.
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-GWAS\_pop
-</th>
-<th style="text-align:left;">
-Trait
-</th>
-<th style="text-align:right;">
-Threshold
-</th>
-<th style="text-align:left;">
-Distance
-</th>
-<th style="text-align:right;">
-R2
-</th>
-<th style="text-align:right;">
-TOPMed\_mean
-</th>
-<th style="text-align:right;">
-TOPMed\_sd
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Pan-UKBB
-</td>
-<td style="text-align:left;">
-HTN
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-250kb
-</td>
-<td style="text-align:right;">
-0.1
-</td>
-<td style="text-align:right;">
-4.50e-06
-</td>
-<td style="text-align:right;">
-4.10e-06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MVP
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:right;">
-0.1
-</td>
-<td style="text-align:left;">
-1000kb
-</td>
-<td style="text-align:right;">
-0.1
-</td>
-<td style="text-align:right;">
--4.95e-04
-</td>
-<td style="text-align:right;">
-2.63e-04
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MVP
-</td>
-<td style="text-align:left;">
-DBP
-</td>
-<td style="text-align:right;">
-0.1
-</td>
-<td style="text-align:left;">
-1000kb
-</td>
-<td style="text-align:right;">
-0.1
-</td>
-<td style="text-align:right;">
--4.95e-04
-</td>
-<td style="text-align:right;">
-2.63e-04
-</td>
-</tr>
-</tbody>
-</table>
+    ##   GWAS_pop Trait Threshold Distance  R2 TOPMed_mean TOPMed_sd
+    ## 1 Pan-UKBB   HTN       0.2    250kb 0.1    4.46e-06  4.07e-06
+    ## 2      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
+    ## 3      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
 
 ## PRSice command for PRS construction
 
@@ -207,38 +113,8 @@ final scaling. Using the same scaling throughout guarantees that effect
 size estimates are similarly interpreted across all datasets and
 individuals who use this PRS.
 
-    # mean and SD of the HTN-PRS in the multi-ethnic TOPMed participants in the analysis:
-
-    TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -5.86e-16, 
-                                         TOPMed_sd= 2.31 )
-
-    kableExtra::kable(TOPMed_HTN_PRS_mean_sd, caption = "Mean and SD of PRSsum in TOPMed")
-
-<table>
-<caption>
-Mean and SD of PRSsum in TOPMed
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-TOPMed\_mean
-</th>
-<th style="text-align:right;">
-TOPMed\_sd
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2.31
-</td>
-</tr>
-</tbody>
-</table>
+    ##   TOPMed_mean TOPMed_sd
+    ## 1   -5.86e-16      2.31
 
     library(data.table)
     library(dplyr)
@@ -285,7 +161,7 @@ provide in the folder “Code”.
     library(pROC)
 
 
-    source("./Code/Utils.R")
+    source("./Code/*")
 
 
     #phenotype
