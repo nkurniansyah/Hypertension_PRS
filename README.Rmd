@@ -25,7 +25,7 @@ We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate P
 Other software and packages that we used, but may not be necessary for others to construct the PRS, are as follows: 
 1. We performed the analysis using R version 4.0.2. W
 2. We used the following packages from CRAN: dplyr, tidyverse, data.table, purrr, pROC.
-3. We used the following packages from BioConductor: GENESIS, GWASToools.
+3. We used the following packages from BioConductor: GENESIS, GWASTools.
 
 ```{r eval=FALSE, echo=TRUE}
 
@@ -34,11 +34,13 @@ install.packages("dplyr")
 ```
 
 
-## STEP 2: Construct PRS
+## PRS construction
+Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics to create the each of the trait-PRS are provided here in a subfolder(./Summary_Statistics_for_PRS_construction/*). 
 
-We used hypertension “pan ancestry” GWAS from [UKBB](https://pan.ukbb.broadinstitute.org), and systolic BP ([SBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and diastolic BP ([DBP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) from MVP(Million Veteran Program) to construct PRS (See script below). Then we applied CV (Coefecient Variation) to select best perfomance PRS, see manuscript for more detail. 
+Specific GWAS used: hypertension “pan ancestry” GWAS from [UKBB](https://pan.ukbb.broadinstitute.org),   ([SBP GWAS from MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and ([DBP GWAS from MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) with MVP standing for Million Veteran Program. 
 
-We provide summary statistics to crete HTN PRS in this repistory(./Summary_Statitcs/*). The summary statitics created are cretaed based on clumping paramenter below:
+The summary statistics provided in this repository were selected from those in the complete GWAS based on clumping parameter below, where we used the multi-ethnic TOPMed dataset used in the paper as an LD reference panel. To select the specific tuning parameter (LD parameters, p-value threshold) for each trait-specific PRS, we applied an approach where we optimized the coefficient of variation (CV) computed over the estimated effect sizes of the candidate PRS across 5 independent subset of the training dataset. See manuscript for more detail. 
+
 
 ```{r echo=FALSE}
 pan_ancestry<- data.frame(Threshold="0.2", Distance="250kb", R2="0.1",Trait="HTN", Study="Pan-UKBB", "Topmed mean"=4.46e-06, "Topmed sd"=4.07e-06)
