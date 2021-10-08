@@ -125,7 +125,7 @@ individuals who use this PRS.
     ##   TOPMed_mean TOPMed_sd
     ## 1   -5.86e-16      2.31
 
-  
+See code below to construct PRSsum.  
 
     library(data.table)
     library(dplyr)
