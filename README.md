@@ -20,8 +20,8 @@ PRS based on the provided summary statistics in folder
 “Summary\_Statistics\_for\_PRS\_construction”.
 
 Other software and packages that we used, but may not be necessary for
-others to construct the PRS, are as follows: 1. We performed the
-analysis using R version 4.0.2.  
+others to construct the PRS, are as follows:  
+1. We performed the analysis using R version 4.0.2.  
 2. We used the following packages from CRAN: dplyr, tidyverse,
 data.table, purrr, pROC.  
 3. We used the following packages from BioConductor: GENESIS,
@@ -53,16 +53,18 @@ of the training dataset. See manuscript for more detail.
 
 The table below provides, for each trait-specific GWAS used, the
 following information: 1. GWAS\_pop: GWAS population (which cohort/study
-the GWAS summary statistics are from?) 2. Trait (HTN, SBP, DBP)
-Threshold: p-value threshold for selecting SNPs into the PRS 3.
-Distance: distance in kilo base-pairs used for clumping (SNPs were
+the GWAS summary statistics are from?)  
+2. Trait (HTN, SBP, DBP)  
+3. Threshold: p-value threshold for selecting SNPs into the PRS  
+4. Distance: distance in kilo base-pairs used for clumping (SNPs were
 removed from consideration based on LD with other SNPs within a window
-of this distance) 4. R2: maximum LD for inclusion of SNPs within the
-distance-based window of another SNP that was already selected into the
-PRS. 5. TOPMed\_mean: the mean of the PRS after it was constructed in
-the multi-ethnic TOPMed population. That is, each of the TOPMed
-participants had a PRS value. This is the mean of these values. 6.
-TOPMed\_sd: the standard deviation (SD) of the PRS after it was
+of this distance)  
+5. R2: maximum LD for inclusion of SNPs within the distance-based window
+of another SNP that was already selected into the PRS.  
+6. TOPMed\_mean: the mean of the PRS after it was constructed in the
+multi-ethnic TOPMed population. That is, each of the TOPMed participants
+had a PRS value. This is the mean of these values.  
+7. TOPMed\_sd: the standard deviation (SD) of the PRS after it was
 constructed in the multi-ethnic TOPMed population. That is, each of the
 TOPMed participants had a PRS value. This is the SD of these values.
 
