@@ -1,7 +1,7 @@
 ---
 title: "Hypertension PRS"
 author: "Nuzulul Kurniansyah & Tamar Sofer"
-date: "9/20/2021"
+date: "10/08/2021"
 output: md_document
 ---
 
@@ -11,14 +11,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-This is the instruction to construct and performs the association test for Polygenic Risk Score in Hypertension. This instruction is based on the manuscript A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood.
+This repository provides information regarding the construction of a polygenic risk score (PRS) for hypertension (HTN) that we developed (HTN-PRS) and will be posted as a preprint soon (link to be added).
+
+First, it provides instructions for constructing the HTN-PRS based on summary statistics from GWAS. We provide the relevant summary statistics (see folder "Summary_Statistics_for_PRS_construction"), as well as code for using them to construct the PRS.  
+
+Second, this repository also provides code the we used for the analyses in the manuscript (see folder "Code"). 
 
 
-## STEP 1: Installation and require R packages
+## Required packages
 
-In this paper, We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate PRS. 
+We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to generate PRS. We provide example code that also uses PRSice to construct PRS based on the provided summary statistics in folder "Summary_Statistics_for_PRS_construction".
 
-We performed the analysis using R/4.0.2 programming. We first need to install the required CRAN (dplyr, tidyverse, data.table, purrr, pROC) and BioConductor(GENESIS, GWASToools) packages
+Other software and packages that we used, but may not be necessary for others to construct the PRS, are as follows: 
+1. We performed the analysis using R version 4.0.2. W
+2. We used the following packages from CRAN: dplyr, tidyverse, data.table, purrr, pROC.
+3. We used the following packages from BioConductor: GENESIS, GWASToools.
 
 ```{r eval=FALSE, echo=TRUE}
 
