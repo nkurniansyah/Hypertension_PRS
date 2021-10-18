@@ -53,7 +53,7 @@ The table below provides, for each trait-specific GWAS used, the following infor
 
 
 ```{r echo=FALSE}
-ukb_htn <- data.frame(GWAS_pop ="Pan-UKBB", Trait="HTN", Threshold=0.2, Distance="250kb", R2=0.1, TOPMed_mean=4.46e-06, TOPMed_sd=4.07e-06)
+ukb_htn <- data.frame(GWAS_pop ="Pan-UKBB", Trait="HTN", Threshold=0.2, Distance="250kb", R2=0.1, TOPMed_mean=-8.57e-06, TOPMed_sd=1.98e-05)
 
 mvp_DBP <- data.frame(GWAS_pop ="MVP", Trait="DBP", Threshold=0.1, Distance="1000kb", R2=0.1, TOPMed_mean=-4.95e-04, TOPMed_sd=2.63e-04)
 
@@ -110,11 +110,16 @@ After constructing trait-specific PRS, the HTN-PRS is obtained via the PRSsum ap
 ```{r echo=FALSE}
 # mean and SD of the HTN-PRS in the multi-ethnic TOPMed participants in the analysis:
 
-TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -5.86e-16, 
-                                     TOPMed_sd= 2.31 )
+TOPMed_HTN_PRS_mean_sd <- data.frame(TOPMed_mean= -4.96e-16, 
+                                     TOPMed_sd= 2.69 )
+
 
 TOPMed_HTN_PRS_mean_sd
+
+
 ```
+
+See code below to construct PRSsum. 
 
 
 ```{r eval=FALSE, echo=TRUE}
