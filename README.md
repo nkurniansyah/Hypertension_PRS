@@ -74,7 +74,7 @@ following information:
 <!-- -->
 
     ##   GWAS_pop Trait Threshold Distance  R2 TOPMed_mean TOPMed_sd
-    ## 1 Pan-UKBB   HTN       0.2    250kb 0.1   -8.57e-06  1.98e-05
+    ## 1 Pan-UKBB   HTN       0.3    250kb 0.1   -8.57e-06  1.98e-05
     ## 2      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
     ## 3      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
 
