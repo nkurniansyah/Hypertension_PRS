@@ -99,7 +99,7 @@ names(res_list) <- c("bottom_10", "q_11_to_50", "q_51_to_90", "q_90_to_100")
 for (g in 1:length(res_list)){
   
   mod <- lmer(htn ~ age_17 + age_sq_17 + sex+ PC_1+PC_2+PC_3+PC_4+PC_5+PC_6+PC_7+
-                PC_8+PC_9+PC_10+PC_11+ race+ smoke  + (1|sample.id), 
+                PC_8+PC_9+PC_10+PC_11+ race  + (1|sample.id), 
               data = pheno_race[which(pheno_race$prs_q == names(res_list)[g]),])
   
   res <- c()
