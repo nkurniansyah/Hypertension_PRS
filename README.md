@@ -40,7 +40,7 @@ MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and ([DBP GWAS from
 MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) with MVP standing for
 Million Veteran Program.
 
-The summary statistics provided in this repository were selected from
+The summary statistics provided were selected from
 those in the complete GWAS based on clumping parameter below, where we
 used the multi-ethnic TOPMed dataset used in the paper as an LD
 reference panel. To select the specific tuning parameter (LD parameters,
