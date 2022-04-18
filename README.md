@@ -2,7 +2,7 @@
 
 This repository provides information regarding the construction of a
 polygenic risk score (PRS) for hypertension (HTN) that we developed
-(HTN-PRS) in manuscript[A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood (https://www.medrxiv.org/content/10.1101/2021.10.31.21265717v1 "A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood").
+(HTN-PRS) in manuscriptA multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood (https://www.medrxiv.org/content/10.1101/2021.10.31.21265717v1).
 
 First, it provides instructions for constructing the HTN-PRS based on
 summary statistics from GWAS. We provide the relevant summary statistics
@@ -16,8 +16,7 @@ in the manuscript (see folder “Code”).
 
 We used [PRSice 2.3.1.e](https://www.prsice.info "PRSice 2.3.1.e") to
 generate PRS. We provide example code that also uses PRSice to construct
-PRS based on the provided summary statistics in folder
-“Summary\_Statistics\_for\_PRS\_construction”.
+PRS based on the provided summary statistics.
 
 Other software and packages that we used, but may not be necessary for
 others to construct the PRS, are as follows:  
@@ -33,8 +32,7 @@ GWASTools.
 
 Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood
 pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics
-to create the each of the trait-PRS are provided here in a
-subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*).
+to create the each of the trait-PRS;
 
 Specific GWAS used: hypertension “pan ancestry” GWAS from
 [UKBB](https://pan.ukbb.broadinstitute.org), ([SBP GWAS from
