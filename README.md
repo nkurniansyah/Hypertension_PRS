@@ -2,11 +2,11 @@
 
 This repository provides information regarding the construction of a
 polygenic risk score (PRS) for hypertension (HTN) that we developed
-(HTN-PRS) in manuscript A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood (https://www.medrxiv.org/content/10.1101/2021.10.31.21265717v1).
+(HTN-PRS) in manuscript [A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood] (https://www.medrxiv.org/content/10.1101/2021.10.31.21265717v1 "A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood").
 
 First, it provides instructions for constructing the HTN-PRS based on
 summary statistics from GWAS. We provide the relevant summary statistics
-[here](here "https://figshare.com/articles/dataset/A_multi-ethnic_polygenic_risk_score_is_associated_with_hypertension_prevalence_and_progression_throughout_adulthood/19611558"), as well as
+[here](https://figshare.com/articles/dataset/A_multi-ethnic_polygenic_risk_score_is_associated_with_hypertension_prevalence_and_progression_throughout_adulthood/19611558 "here"), as well as
 code for using them to construct the PRS.
 
 Second, this repository also provides code the we used for the analyses
