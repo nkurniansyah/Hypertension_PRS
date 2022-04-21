@@ -10,6 +10,7 @@
 #'
 #' @examples
 #' 
+library(lme4)
 split_data<-function(pheno){
   
   # column that we need as it is at all time points
