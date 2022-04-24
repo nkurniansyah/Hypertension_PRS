@@ -132,7 +132,7 @@ info_table <- ggplot(data = figure6_df, aes(y = ID)) +
                     theme_void() +
                     theme(plot.margin = margin(5, 5, 35, 5))
 
-jpeg("output/here", units = "in", width = 8, height = 8, res=300)
+pdf("output/here", width = 8, height = 8)
 
 grid.arrange(info_table,forest_plot, ncol = 2)
 
