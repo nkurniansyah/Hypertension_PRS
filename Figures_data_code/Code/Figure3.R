@@ -80,7 +80,7 @@ forest_plot_w_info<-forest_plot+
 
 #Save plot
 
-jpeg("output/here", units = "in",height = 6, width = 7, res = 300)
+pdf("output/here", height = 6, width = 7)
 
 forest_plot_w_info
 
