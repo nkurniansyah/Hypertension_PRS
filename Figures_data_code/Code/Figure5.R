@@ -33,7 +33,7 @@ decile_plot<-ggplot(prs_decile, aes(x = quantile,fill = htn_type)) +
 
 
 
-jpeg("output/here", units = "in", height = 6, width = 7.25, res=300)
+pdf("output/here", height = 6, width = 7.25)
 
 decile_plot
 
