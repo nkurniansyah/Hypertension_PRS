@@ -22,7 +22,7 @@ density_plot<- ggplot(prs_score, aes(value, fill=Background))+
   theme(legend.position = "top",
         strip.text = element_text(size = 7))
 
-jpeg("output/here",units = "in", height = 8, width = 8, res=300)
+pdf("output/here", height = 8, width = 8)
 
 print(density_plot+ facet_wrap(~variable, scales = "free_x"))
 
