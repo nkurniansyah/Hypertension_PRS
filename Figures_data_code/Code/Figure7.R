@@ -28,7 +28,7 @@ plot<-ggplot(figure7_df, aes(age, OR)) +
                   strip.text = element_text(size = 10), legend.position = "top")
 
 
-jpeg("output/here", units = "in", width=8, height = 4, res = 300)
+pdf("output/here",  width=8, height = 4)
 
 plot+ facet_wrap(~Race, scales = "free_x")
 
