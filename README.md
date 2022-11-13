@@ -2,7 +2,7 @@
 
 This repository provides information regarding the construction of a
 polygenic risk score (PRS) for hypertension (HTN) that we developed
-(HTN-PRS) in manuscript A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood (link to be added).
+(HTN-PRS) in manuscript [A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood](https://www.nature.com/articles/s41467-022-31080-2 "A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood") .
 
 First, it provides instructions for constructing the HTN-PRS based on
 summary statistics from GWAS. We provide the relevant summary statistics
