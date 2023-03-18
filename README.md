@@ -161,7 +161,7 @@ See code below to construct PRSsum.
 
     prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - TOPMed_HTN_PRS_mean_sd$TOPMed_mean))/TOPMed_HTN_PRS_mean_sd$TOPMed_sd
 
-## Example code for association analsis
+## Example code for association analysis
 
 We performed association analysis using mixed models implemented in the
 GENESIS R package. Below is an example code. It uses function that we
