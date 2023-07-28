@@ -34,7 +34,7 @@ GWASTools.
 Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood
 pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics
 to create the each of the trait-PRS are provided here in a
-subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*).
+subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*). The variant positions are in Hg38 and Alelle 1 is effect alelle.
 
 Specific GWAS used: hypertension “pan ancestry” GWAS from
 [UKBB](https://pan.ukbb.broadinstitute.org), ([SBP GWAS from
