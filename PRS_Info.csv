@@ -1,0 +1,4 @@
+"GWAS_pop","Trait","Threshold","Distance","R2","TOPMed_mean","TOPMed_sd"
+"Pan-UKBB","HTN",0.3,"250kb",0.1,-8.57e-06,1.98e-05
+"MVP","DBP",0.1,"250kb",0.3,-0.000495,0.000263
+"MVP","SBP",0.01,"1000kb",0.2,-0.00463,0.00111
