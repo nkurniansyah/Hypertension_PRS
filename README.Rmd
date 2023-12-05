@@ -68,7 +68,7 @@ PRS_info
 ```
 
 ## PRSice command for PRS construction
-This command is to construct PRS using the summary statistics that we provide. No clumping is needed and no selection of SNPs. The summary statistics are already based on the specific set of SNPs selected after clumping and setting a p-value threshold. Note that genetic data files need to be specified in the --target argument.
+This command is to construct PRS using the summary statistics that we provide. No clumping is needed and no selection of SNPs. The summary statistics are already based on the specific set of SNPs selected after clumping and setting a p-value threshold. Note that genetic data files need to be specified in the --target argument. Note, as we have already performed the clumping for generating PRS, PRSice2 requires a p-value as input in our summary statistics. For this purpose, we provide **mock p-value** in our summary statistics (Summary_Statistics_for_PRS_construction/*)
 
 ```{bash eval=FALSE, echo=TRUE}
 
@@ -84,7 +84,7 @@ Rscript ./PRSice.R \
  --A1 Allele1 
  --A2 Allele2 
  --pvalue PValue \
- --bar-levels Threshold \
+ --bar-levels 1 \
  --stat BETA 
  --all-score T \
  --out ./out_prs \
