@@ -2,7 +2,7 @@
 
 This repository provides information regarding the construction of a
 polygenic risk score (PRS) for hypertension (HTN) that we developed
-(HTN-PRS) in manuscript [A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood](https://www.nature.com/articles/s41467-022-31080-2 "A multi-ethnic polygenic risk score is associated with hypertension prevalence and progression throughout adulthood") .
+(HTN-PRS) and will be posted as a preprint soon (link to be added).
 
 First, it provides instructions for constructing the HTN-PRS based on
 summary statistics from GWAS. We provide the relevant summary statistics
@@ -34,7 +34,7 @@ GWASTools.
 Our HTN-PRS is a sum of multiple trait-specific PRS (HTN, systolic blood
 pressure (SBP) and diastolic blood pressure (DBP)). Summary statistics
 to create the each of the trait-PRS are provided here in a
-subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*). The variant positions are in Hg38 and Alelle 1 is the effect alelle.
+subfolder(./Summary\_Statistics\_for\_PRS\_construction/\*).
 
 Specific GWAS used: hypertension “pan ancestry” GWAS from
 [UKBB](https://pan.ukbb.broadinstitute.org), ([SBP GWAS from
@@ -42,7 +42,7 @@ MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)), and ([DBP GWAS from
 MVP](https://pubmed.ncbi.nlm.nih.gov/30578418/)) with MVP standing for
 Million Veteran Program.
 
-The summary statistics provided were selected from
+The summary statistics provided in this repository were selected from
 those in the complete GWAS based on clumping parameter below, where we
 used the multi-ethnic TOPMed dataset used in the paper as an LD
 reference panel. To select the specific tuning parameter (LD parameters,
@@ -74,9 +74,9 @@ following information:
 <!-- -->
 
     ##   GWAS_pop Trait Threshold Distance  R2 TOPMed_mean TOPMed_sd
-    ## 1 Pan-UKBB   HTN      0.30    250kb 0.1   -8.57e-06  1.98e-05
-    ## 2      MVP   DBP      0.10    250kb 0.3   -4.95e-04  2.63e-04
-    ## 3      MVP   SBP      0.01   1000kb 0.2   -4.63e-03  1.11e-03
+    ## 1 Pan-UKBB   HTN       0.2    250kb 0.1   -8.57e-06  1.98e-05
+    ## 2      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
+    ## 3      MVP   DBP       0.1   1000kb 0.1   -4.95e-04  2.63e-04
 
 ## PRSice command for PRS construction
 
@@ -84,7 +84,11 @@ This command is to construct PRS using the summary statistics that we
 provide. No clumping is needed and no selection of SNPs. The summary
 statistics are already based on the specific set of SNPs selected after
 clumping and setting a p-value threshold. Note that genetic data files
-need to be specified in the –target argument.
+need to be specified in the –target argument. Note, as we have already
+performed the clumping for generating PRS, PRSice2 requires a p-value as
+input in our summary statistics. For this purpose, we provide **mock
+p-value** in our summary statistics
+(Summary\_Statistics\_for\_PRS\_construction/\*)
 
 
 
@@ -99,7 +103,7 @@ need to be specified in the –target argument.
      --A1 Allele1 
      --A2 Allele2 
      --pvalue PValue \
-     --bar-levels Threshold \
+     --bar-levels 1 \
      --stat BETA 
      --all-score T \
      --out ./out_prs \
@@ -161,7 +165,7 @@ See code below to construct PRSsum.
 
     prssum[,"PRSsum"]<- (prssum[,"PRSsum"] - TOPMed_HTN_PRS_mean_sd$TOPMed_mean))/TOPMed_HTN_PRS_mean_sd$TOPMed_sd
 
-## Example code for association analysis
+## Example code for association analsis
 
 We performed association analysis using mixed models implemented in the
 GENESIS R package. Below is an example code. It uses function that we
@@ -218,4 +222,3 @@ provide in the folder “Code”.
 
 
     final_assoc<-c(assoc_df,auc)
-    
