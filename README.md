@@ -1,3 +1,10 @@
+## Update: PRSs in the PGS catalog
+https://www.pgscatalog.org/publication/PGP000531/ 
+This includes the variants and weight for the three trait-specific PRS, 
+and also, there is single PRS (https://www.pgscatalog.org/score/PGS004236) 
+that accounts for the summation of three separate PRSs.
+
+
 ## Introduction
 
 This repository provides information regarding the construction of a
